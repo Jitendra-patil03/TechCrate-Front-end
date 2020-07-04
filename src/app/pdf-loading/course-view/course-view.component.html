@@ -1,0 +1,74 @@
+<br>
+<div class="container" style="background-color:lightgray;">
+    <div class="container">
+        <h1 *ngIf="!showfeedback " class="justify-content-center"style="text-align: center;">Course:- {{courseCategory}}</h1>
+        <h3 *ngIf="CourseNot" style="color: red;">{{CourseNot}}</h3>
+        <div class="d-flex justify-content-right" style="float: right;">
+            <button class="btn btn-danger" *ngIf="!showfeedback" (click)="showfeedback=true">
+                Please give feedback &nbsp;<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            </button>
+        </div>    
+    </div>
+    <div class="row " *ngIf="!showfeedback" style="margin-top: 5%;text-align: center;">
+        <div class="col-sm-3 d-flex justify-content-center" style="margin-bottom: 20px;" *ngFor="let courseData of courseList">
+            <div>
+                <mat-card class="example-card" style="border-radius: 20px;">
+                    <mat-card-header>
+                    <mat-card-title>{{courseData.course_Name}}</mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                    </mat-card-header>
+                    <a mat-fab color="accent"(click)="sendRequestPdf(courseData.course_Name)" style="width:max-content;content: inherit;size: 20px;">Open pdf</a>
+                    <mat-card-content>
+                    <p>
+                        {{courseData.description}}
+                    </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    </mat-card-actions>
+                </mat-card>  
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center" style="padding-top: 5%;" *ngIf="showfeedback">
+
+        <section style="background-color: whitesmoke">
+            <button class="btn btn-danger" style="float: right;" *ngIf="showfeedback" (click)="showfeedback=false">
+                close &nbsp;<i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <br>
+            <div class="col-sm">
+                <p>Please give your valuable feedback to us.</p>
+            </div>
+            <form [formGroup] = "feedBackForm" (ngSubmit)="sendData()">
+                <mat-form-field class="col">
+                    <mat-label>Enter your Full Name</mat-label>
+                    <input  matInput formControlName="Name" placeholder="full name"/>
+                </mat-form-field>
+                
+                <mat-form-field class="col">
+                    <mat-label>Comment</mat-label>
+                    <textarea  matInput formControlName="feedback" placeholder="what imporvements we need" ></textarea>
+                </mat-form-field>
+                <br>
+                <div class="col" >
+                    <label>Rate us</label>
+                    <div id="rate-container">
+                        <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{orange:rating >= star}" (mouseenter)="rate(star)" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm">
+
+                    <button class="btn btn-primary" type="submit">submit</button>
+                </div>
+            </form>
+            <br>
+            <div class="col-sm" style="background-color: green;" *ngIf="feedMsg">
+                <label style="color:white;">{{feedMsg}}</label>
+            </div>
+        </section>
+    </div>
+    
+</div>

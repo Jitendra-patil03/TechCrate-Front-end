@@ -1,0 +1,54 @@
+<br><br>
+<div class="container">
+    <div class="row">
+            <a class="btn btn-primary text-right" style="text-align: right;" routerLink = "/Auth/CustomerQuery">go to complaint box &nbsp; <i class="fa fa-envelope-open-o"></i></a>
+            <div class="fixed-right">
+            <button style="text-align: right;justify-content: right;" type="button" class="btn btn-denger" (click)="logout()">logout</button>
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color:snow;" >
+    <div class="text-center"  >
+        <h1 style="text-align: center;">Upload pdf </h1>
+    </div>
+    <div class="row" style="border-style:groove;">
+        <div class="col-sm">
+            <div class="form-bg">
+                <form [formGroup]="uploadFileData" (ngSubmit)="uploadPdf()">
+                    <div class="form-group">
+                        <label for="name" > Select course Category</label>
+                        <select class="form-control" formControlName="courseCategory" style="background:whitesmoke">
+                            <option>SCHOOL</option>
+                            <option>ENG_CSE</option>
+                            <option>ENG_ME</option>
+                            <option>APTITUDE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Name</label>
+                        <input type="text" class="form-control" formControlName="courseName"/>
+                    </div>
+                    <div class="form-group">
+                        <label>select pdf file &nbsp;<i class="fa fa-file-pdf-o" aria-hidden="true"></i></label>
+                        <input type="file" accept="application/pdf" (change)="selectPdf($event)" class="form-control" formControlName="coursePdf"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Name</label>
+                        <input type="text" class="form-control" formControlName="author"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Discription</label>
+                        <input type="text" class="form-control" formControlName="discription"/>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" [disabled]="!uploadFileData.valid" style="text-align: center;" class="btn btn-primary"> submit</button>
+                    </div>
+                </form>
+                
+            
+            </div>
+        </div>
+
+    </div>
+</div>
+

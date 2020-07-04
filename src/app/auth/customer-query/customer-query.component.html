@@ -1,0 +1,38 @@
+<br><br>
+<div class="container align-items-center">
+    <h1 style="display: inline-block;text-align: center;">Resolving customer queries..</h1>
+    <table class="table table-hover table-primary table-responsive" *ngIf="show">
+        <thead>
+            <tr>
+              <th scope="col">requestId</th>  
+              <th scope="col">Name</th>
+              <th scope="col">Mobile</th>
+              <th scope="col-2">Email</th>
+              <th scope="col">date</th>
+              <th scope="col">message </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="table-secondary" *ngFor = "let queries of S">
+                  <td class="table-danger">
+                    {{queries.requestid}}                      
+                  </td>
+                  <td class="table-danger">
+                    {{queries.name}}                      
+                  </td>
+                  <td class="table-primary">
+                      {{queries.mobile}}
+                  </td>
+                  <td class="table-secondary">
+                      {{queries.email}}
+                  </td>
+                  <td class="table-success">
+                      {{queries.date}}
+                  </td>
+                  <td class="table-danger">
+                    {{queries.message}}                      
+                  </td>
+              </tr>
+          </tbody>
+    </table>
+</div>

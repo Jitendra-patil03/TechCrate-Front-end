@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark  navbar-shrink navbar-custom " style="color: #0F52BA;z-index: 100000;position: fixed;" id="mainNav" style="color: #0F52BA;" >
+  <div class="container" style="color: #0F52BA;background-color: #0F52BA; ">
+      <h3 style="color: yellow; font-family: Comic Sans MS;font-style: oblique;text-shadow: 2px 2px black;">TechCrate &nbsp;&nbsp;</h3>
+      <button class="navbar-toggler navbar-toggler-right" type="button" style="background-color: red;text-decoration: white;" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="collapse navbar-collapse row align-items-center" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 col">
+          <li class="nav-item active col-sm-2">
+          </li>
+          <li class="nav-item active li_width">
+            <a class="nav-link aFont" routerLink = "/Home">&nbsp;<i class="fa fa-home" aria-hidden="true"> </i>&nbsp;Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active li_width">
+
+            <a class="nav-link active aFont" mat-button [matMenuTriggerFor]="animals">&nbsp;<i class="fa fa-book" aria-hidden="true"></i>&nbsp;Courses</a>
+              <div class="fixed-top" style ="display: block;z-index: 10000000;" aria-haspopup="true" aria-expanded="false">
+              <mat-menu #animals="matMenu" >
+                <button mat-menu-item (click)="goToCourse('SCHOOL')">School Math</button>
+                <button mat-menu-item [matMenuTriggerFor]="EngineeringContent">Engineering</button>
+                <button mat-menu-item (click)="goToCourse('APTITUDE')">Aptitude</button>
+                <button mat-menu-item (click)="comeSoon()">FAQ</button>
+              </mat-menu>
+
+              
+              <mat-menu #EngineeringContent = "matMenu">
+                <a mat-menu-item routerLink="/PdfLoading/CourseView" (click)="goToCourse('ENG_CSE')">CSE</a>
+                <button mat-menu-item (click)="comeSoon()">Civil</button>
+                <button mat-menu-item (click)="goToCourse('ENG_ME')">ME</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="nav-item li_width">
+            <a class="nav-link aFont" routerLink="/About"> &nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;About Us</a>
+          </li>
+          <li class="nav-item li_width">
+            <a class="nav-link aFont" routerLink="/ContactUs"> &nbsp;<i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;Contact us</a>
+          </li>
+        </ul>
+        
+      </div>
+      
+  </div>
+</nav>
+

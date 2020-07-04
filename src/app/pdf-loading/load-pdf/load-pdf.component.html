@@ -1,0 +1,19 @@
+<p style="text-align: center;margin-top: 60px;  font-size: 40px; font-family: 'Times New Roman', Times, serif;">{{requestPdf}}</p>
+<div class="fixed-bottom justify-content-center" style=" margin-right: 30px;">
+    <button type="button" (click)="zoom_in()" class="btn btn-primary justify-content-center" ><i class="fa fa-search-plus" aria-hidden="true"></i>
+    </button>&nbsp;&nbsp;
+     <button type="button" (click)="zoom_out()" class="btn btn-primary justify-content-center" ><i class="fa fa-search-minus" aria-hidden="true"></i>
+     </button>
+</div>
+<div class="container border border-primary">
+    <pdf-viewer [src]="src" 
+        [render-text]="true"
+        style="display: block;"
+        [fit-to-page]="true"
+        [zoom]="zoomSize"
+    ></pdf-viewer>
+    <h3 style="text-align: center;font-family: 'Times New Roman', Times, serif;">End...<i class="fa fa-pencil" aria-hidden="true"></i>
+    </h3>
+</div>
+
+
