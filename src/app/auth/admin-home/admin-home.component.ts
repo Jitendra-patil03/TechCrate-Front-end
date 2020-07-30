@@ -28,7 +28,7 @@ export class AdminHomeComponent implements OnInit {
   ngOnInit() {
     if(!sessionStorage.getItem('email')){
       alert('plz login first..');
-    //  this.router.navigate(['/Auth/loginAdmin']);
+    this.router.navigate(['/Auth/loginAdmin']);
     }
   }
   logout(){

@@ -45,7 +45,7 @@ export class ConnectionService {
       formdata.append("file",selectfile);
       formdata.append("courseName",file.get("courseName").value);
       formdata.append("category",file.get("courseCategory").value);
-      this.s = "Author:-"+file.get("author").value+"<br>discription:- "+file.get("discription").value;
+      this.s = "Author:-"+file.get("author").value+"\n discription:- "+file.get("discription").value;
       formdata.append("description",this.s);
       console.log(formdata.get("file").valueOf.length);
       //alert(""+file.get("courseCategory").value);

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         alert("login failed");
-        alert(data);
+        //alert(data);
       }
     },
     (error)=>{

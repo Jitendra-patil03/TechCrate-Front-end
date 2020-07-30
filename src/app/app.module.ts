@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 //import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MainComponent,
     ContactUsComponent,
     HomeComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

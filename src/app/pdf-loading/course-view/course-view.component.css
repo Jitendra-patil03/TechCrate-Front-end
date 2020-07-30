@@ -9,6 +9,9 @@
  .orange{
    color: orange;
  }
+ .likeCol{
+   color: red;
+ }
   #rate-container{
     border-bottom: 2px solid purple;
   }

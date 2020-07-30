@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CourseViewComponent } from './course-view/course-view.component';
 import { LoadPdfComponent } from './load-pdf/load-pdf.component';
 import {MatCardModule} from '@angular/material/card';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { PdfLoadingRoutingModule } from './pdf-loading-routing.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -22,7 +22,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ]
  
 })

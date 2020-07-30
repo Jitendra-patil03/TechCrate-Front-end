@@ -7,7 +7,7 @@ import { ConnectionService } from 'src/app/connection.service';
   styleUrls: ['./load-pdf.component.css']
 })
 export class LoadPdfComponent implements OnInit {
-  src:any ="/assets/pdf/NCERT_9thMath.pdf";
+  src:any ="";
   requestPdf:string;
   subName:string;
   zoomSize:number=1.1;
@@ -15,18 +15,27 @@ export class LoadPdfComponent implements OnInit {
    }
 retrivedResponse:any;
 base64data:any;
-
+spinner:boolean = true;
   ngOnInit() {
+    
       this.requestPdf = sessionStorage.getItem("subjectName");
-      var repo = this.myser.findPdf(this.requestPdf);
-      repo.subscribe(res=>{
-      this.retrivedResponse = res;
-      this.base64data = this.retrivedResponse.data;
-      this.src = `data:application/pdf;base64,${this.base64data}`;
-     },(error)=>{
-       alert("server not responding!");
-     });
-
+      if(sessionStorage.getItem(this.requestPdf) != null){
+        this.src = sessionStorage.getItem(this.requestPdf);
+        this.spinner = false;
+      }
+      else{
+        var repo = this.myser.findPdf(this.requestPdf);
+        repo.subscribe(res=>{
+        this.retrivedResponse = res;
+        this.base64data = this.retrivedResponse.data;
+        this.src = `data:application/pdf;base64,${this.base64data}`;
+        this.spinner = false;
+        sessionStorage.setItem(this.requestPdf,this.src);
+      
+      },(error)=>{
+        alert("server not responding!");
+      });
+    }
   }
    
   zoom_in() {

@@ -13,11 +13,11 @@ import { Rateus } from 'src/app/RateUs';
 
 export class CourseViewComponent implements OnInit{
   star=[1,2,3,4,5];
-  
+  like:boolean = false; 
   showfeedback:boolean=false;
   showcourse:boolean = true;
   clickEventsubscription:Subscription=undefined;
-  
+  progressSpin:boolean = true;
   courseCategory:string;
   constructor(private httpService:ConnectionService,private router:Router,private formbuilder:FormBuilder) {
       
@@ -29,20 +29,26 @@ export class CourseViewComponent implements OnInit{
     //alert('onit');
     this.courseCategory = sessionStorage.getItem('selectedCourseCategory');
  //  alert(`${this.course} clicked`);
-      let repo = this.httpService.getsubjectList(this.courseCategory);
-      repo.subscribe(data=>{
-        this.courseList = data;
-        
-        if(typeof data==undefined || data.length <=0){
-          this.CourseNot = "this course not available now, we will provide it soon..";
-        }else{
-      
-          this.CourseNot ="";
-        }
-      },(error)=>{
-        alert('server not responding, try after sometime..');
-
-      })
+    if(sessionStorage.getItem(this.courseCategory)!=null){
+      this.progressSpin = false;
+      this.courseList = JSON.parse(sessionStorage.getItem(this.courseCategory));
+    }else{
+        let repo = this.httpService.getsubjectList(this.courseCategory);
+        repo.subscribe(data=>{
+          this.courseList = data;
+          sessionStorage.setItem(this.courseCategory,JSON.stringify(this.courseList));
+          this.progressSpin = false; 
+          if(typeof data==undefined || data.length <=0){
+            this.CourseNot = "This course currently unavailable, we will provide it soon..";
+            this.progressSpin = false;
+          }else{
+            this.progressSpin = false;
+            this.CourseNot ="";
+          }
+        },(error)=>{
+          alert('server not responding, try after sometime..');
+        })
+      }
   }
   sendRequestPdf(subjectName:string){
    // alert(subjectName)
@@ -76,7 +82,15 @@ export class CourseViewComponent implements OnInit{
   rating:number=0;
   rate(star){
     this.rating = star;
-    console.log(star);
+ //   console.log(star);
+  }
+  //this for like
+  callLike(){
+    if(this.like){
+      this.like = false;
+    } else{
+      this.like = true;
+    }
   }
 }
  

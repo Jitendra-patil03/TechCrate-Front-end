@@ -1,13 +1,17 @@
 <br>
-<div class="container" style="background-color:lightgray;">
+<div class="container-fulid" style="background-color:gray; border: red;border-width: 5px;border: 20px;">
     <div class="container">
-        <h1 *ngIf="!showfeedback " class="justify-content-center"style="text-align: center;">Course:- {{courseCategory}}</h1>
-        <h3 *ngIf="CourseNot" style="color: red;">{{CourseNot}}</h3>
-        <div class="d-flex justify-content-right" style="float: right;">
-            <button class="btn btn-danger" *ngIf="!showfeedback" (click)="showfeedback=true">
-                Please give feedback &nbsp;<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            </button>
-        </div>    
+        <div class="row">
+            <div class="d-flex justify-content-right" style="float: right;">
+                <button class="btn btn-danger" *ngIf="!showfeedback" (click)="showfeedback=true">
+                    Please give us feedback &nbsp;<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div> 
+            <h1 *ngIf="!showfeedback" class="justify-content-center"style="text-align: center; text-shadow:2px darkred;color:whitesmoke;font-family: Georgia, 'Times New Roman', Times, serif;">Course List:- {{courseCategory}}</h1>
+            <div class="d-flex justify-content-center" *ngIf = "progressSpin"><mat-spinner></mat-spinner></div>
+            <h3 *ngIf="CourseNot" style="color: red; ">{{CourseNot}}</h3>
+        
     </div>
     <div class="row " *ngIf="!showfeedback" style="margin-top: 5%;text-align: center;">
         <div class="col-sm-3 d-flex justify-content-center" style="margin-bottom: 20px;" *ngFor="let courseData of courseList">
@@ -15,7 +19,7 @@
                 <mat-card class="example-card" style="border-radius: 20px;">
                     <mat-card-header>
                     <mat-card-title>{{courseData.course_Name}}</mat-card-title>
-                    <mat-card-subtitle></mat-card-subtitle>
+                     <mat-card-subtitle></mat-card-subtitle>
                     </mat-card-header>
                     <a mat-fab color="accent"(click)="sendRequestPdf(courseData.course_Name)" style="width:max-content;content: inherit;size: 20px;">Open pdf</a>
                     <mat-card-content>
@@ -24,7 +28,7 @@
                     </p>
                     </mat-card-content>
                     <mat-card-actions>
-                    <button mat-button>LIKE</button>
+                    <button mat-button (click)="callLike()"  ><i class="fa fa-heart" style="size: 10px;" [ngClass]="{likeCol: like}" aria-hidden="true"></i></button>
                     </mat-card-actions>
                 </mat-card>  
             </div>
@@ -39,7 +43,7 @@
             </button>
             <br>
             <div class="col-sm">
-                <p>Please give your valuable feedback to us.</p>
+                <p>Please give us your valuable feedback.</p>
             </div>
             <form [formGroup] = "feedBackForm" (ngSubmit)="sendData()">
                 <mat-form-field class="col">
@@ -61,7 +65,7 @@
                 <br>
                 <div class="col-sm">
 
-                    <button class="btn btn-primary" type="submit">submit</button>
+                    <button class="btn btn-primary" [disabled]="!feedBackForm.valid" type="submit">submit</button>
                 </div>
             </form>
             <br>
@@ -70,5 +74,6 @@
             </div>
         </section>
     </div>
-    
+    <div style="padding-bottom: 30px;"></div> 
 </div>
+<br>
